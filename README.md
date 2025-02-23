@@ -1,99 +1,28 @@
-# Node.js Template - Make It Real 💻
+# React + Vite
 
-Codebase for the node.js projects.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- Built with Node.js and Express
-- Typescript
-- Mongoose ODM
-- REST API & GraphQL
+## Getting Started
 
-## Prerequisites
+Install the frontend dependencies
 
-- [Git](https://git-scm.com/downloads)
-- [Volta.sh](https://dev.to/khriztianmoreno/introduccion-a-volta-la-forma-mas-rapida-de-administrar-entornos-de-node-1oo6)
--  [Node.js and npm](https://nodejs.org) Node >= 18.12 LTS, npm >= 8.19.x - Install with Volta.sh
-
-## Express Router and Routes
-
-| Route               | HTTP Verb | Route Middleware   | Description                          |
-| --------------------| --------- | ------------------ | ------------------------------------ |
-| /api/healthcheck    | GET       | isAuthenticated    | Show a simple message                |
-| /api/users          | GET       | isAuthenticated    | Get list of users                    |
-| /api/users          | POST      |                    | Creates a new users                  |
-| /api/users/:id      | GET       | isAuthenticated    | Get a single users                   |
-| /api/users/:id      | DELETE    | isAuthenticated    | Deletes a user                       |
-
-
-## Usage
-The use of endpoints is very simple, previously you could see a table of endpoints that you can call, if you need to create a note or log in, here we have some examples.
-
-### Authentication **user** `/auth/local/login`:
-
-Request Body:
-```json
-{
-  "email": "cristian.moreno@makeitreal.camp",
-  "password": "123456"
-}
-```
-
-Response:
-```json
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNyaXN0aWFuLm1vcmVub0BtYWtlaXRyZWFsLmNhbXAiLCJpYXQiOjE2NjEyMDgwODJ9.kPdMoVUEnyX36vi606Mc1C66yWLKKAB37GLbF0gzhBo",
-  "profile": {
-    "firstName": "cristian",
-    "lastName": "moreno",
-    "email": "cristian.moreno@makeitreal.camp",
-    "avatar": "https://image.com/264.jpg",
-    "role": "ADMIN"
-  }
-}
-```
-### Basic example **Create User** `/api/users`:
-
-Request Body:
-```json
-{
-  "firstName": "cristian",
-  "lastName": "moreno",
-  "email": "cristian.moreno@makeitreal.camp",
-  "password": "123456",
-  "avatar": "https://image.com/264.jpg",
-}
-```
-
-Response:
-
-```json
-{
-  "name": "cristian moreno",
-  "email": "cristian.moreno@makeitreal.camp",
-  "role": "USER",
-}
-```
-
-### Developing
-
-1. Run `npm install` to install server dependencies.
-
-2. Configure the env
 ```shell
-$ cp .env.example .env
+npm install
 ```
 
-3. Update `.env` with the required info
+and then start the development server.
 
-4. Run `npm run dev` to start the development server.
+```shell
+npm run dev
+```
 
+The React app should begin running on `http://localhost:5173`.
 
-#### Convention
+To make changes to the page, modify [`src/App.jsx`](src/App.jsx).
 
-- [Commit Message Convention](https://www.conventionalcommits.org/en/v1.0.0/)
-- [Git Flow](https://www.atlassian.com/es/git/tutorials/comparing-workflows/gitflow-workflow)
-- [Git Commit Emoji](https://gitmoji.dev/)
+## Connecting to API endpoints
 
-
-## License
-
-[MIT](LICENSE)
+The provided [Vite configuration](vite.config.js) sets up a proxy for API requests in development.
+This means that from the React code, network requests can be made directly to `/api/path`
+without needing to specify a different host for local development and when deployed.
+Additionally, because of the proxy, the local API server does not need to enable CORS.
